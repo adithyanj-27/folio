@@ -42,3 +42,16 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 
 revealItems.forEach((item) => observer.observe(item));
+
+async function loadProjects() {
+    try {
+        const response = await fetch("projects.json");
+        const projects = await response.json();
+
+        console.log("Projects:", projects);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+loadProjects();
