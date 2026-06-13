@@ -48,7 +48,22 @@ async function loadProjects() {
         const response = await fetch("projects.json");
         const projects = await response.json();
 
-        console.log("Projects:", projects);
+        const container = document.getElementById("github-projects");
+
+        projects.forEach(project => {
+            const div = document.createElement("div");
+
+            div.innerHTML = `
+                <h3>${project.name}</h3>
+                <a href="${project.url}" target="_blank">
+                    View Repository
+                </a>
+                <hr>
+            `;
+
+            container.appendChild(div);
+        });
+
     } catch (error) {
         console.error(error);
     }
